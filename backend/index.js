@@ -11,13 +11,13 @@ app.set('port', 3000);
 
 // Middleware
 app.use(morgan('dev'));
-multer.diskStorage({
+const storage = multer.diskStorage({
     destination: path.join(__dirname. 'public/uploads'),
     filename(req, file, cb) {
-        cb(null, );
+        cb(null, new Date().getTime() + path.extname(file.originalname));
     }
 })
-app.use.(multer());
+app.use.(multer(storage).single('image'));
 
 // Start the server
 app.listen(app.get('port'), () => {
