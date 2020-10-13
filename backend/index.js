@@ -22,7 +22,10 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
 // Routes
-app.use('/api/books');
+app.use('/api/books', require('./routes/books'));
+
+// Static Files
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Start the server
 app.listen(app.get('port'), () => {
